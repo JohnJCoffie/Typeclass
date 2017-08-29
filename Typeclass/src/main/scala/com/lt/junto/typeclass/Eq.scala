@@ -6,10 +6,10 @@ trait Eq[A] {
 }
 
 object Eq {
-  def eq[A](lhs:A, rhs:A)(adapter: Eq[A]) = adapter.eq(lhs, rhs)
-  def neq[A](lhs:A, rhs:A)(adapter: Eq[A]) = adapter.neq(lhs, rhs)
+  def eq[A](lhs:A, rhs:A)(implicit adapter: Eq[A]) = adapter.eq(lhs, rhs)
+  def neq[A](lhs:A, rhs:A)(implicit adapter: Eq[A]) = adapter.neq(lhs, rhs)
 
-  lazy val doubleHasEq = new Eq[Double] {
+  implicit lazy val doubleHasEq = new Eq[Double] {
     override def eq(a: Double, b: Double) = a == b
   }
 }
