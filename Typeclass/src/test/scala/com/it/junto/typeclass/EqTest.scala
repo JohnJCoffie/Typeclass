@@ -23,6 +23,14 @@ class EqTest extends FunSuite with Matchers {
     assert(expected ==== actual, s"$expected should be equal to $actual")
   }
 
+  test("Test two doubles for whole number equality with ====") {
+    import com.lt.junto.typeclass.ExtraImplicits._
+    import com.lt.junto.typeclass.alternative.AltEq.doubleHasEq
+    val expected = 1.0
+    val actual = 1.1
+    assert(expected ==== actual, s"$expected should be whole number equal to $actual")
+  }
+
   test("Test two doubles for specified inequality") {
     val expected = 1.0
     val actual = 5.0
@@ -35,10 +43,18 @@ class EqTest extends FunSuite with Matchers {
     assert(Eq.neq(expected, actual), s"$expected should not be equal to $actual")
   }
 
-  test("Test two doubles for default inequality with !===") {
+  test("Test two doubles for ???default inequality with !===") {
     import com.lt.junto.typeclass.ExtraImplicits._
     val expected = 1.0
     val actual = 5.0
+    assert(expected !=== actual, s"$expected should not be equal to $actual")
+  }
+
+  test("Test two doubles for default inequality with !===") {
+    import com.lt.junto.typeclass.ExtraImplicits._
+    import com.lt.junto.typeclass.alternative.AltEq.doubleHasEq
+    val expected = 1.0
+    val actual = 2.1
     assert(expected !=== actual, s"$expected should not be equal to $actual")
   }
 }
