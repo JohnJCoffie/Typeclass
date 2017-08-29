@@ -22,6 +22,6 @@ object ExtraImplicits {
 }
 
 class EqOps[T](lhs:T)(implicit e:Eq[T]) {
-  def equal(rhs:T) = e.eq(lhs, rhs)
-  def notEqual(rhs:T) = e.neq(lhs, rhs)
+  def ====(rhs:T) = e.eq(lhs, rhs)
+  def !===(rhs:T) = e.neq(lhs, rhs)
 }
