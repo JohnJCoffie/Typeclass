@@ -6,10 +6,22 @@ trait Eq[A] {
 }
 
 object Eq {
+  /* Adapter methods */
   def eq[A](lhs:A, rhs:A)(implicit adapter: Eq[A]) = adapter.eq(lhs, rhs)
+
   def neq[A: Eq](lhs:A, rhs:A) = implicitly[Eq[A]].neq(lhs, rhs)
 
+  /* Default Typeclass instances, used when Typeclass author wants to provide default behavior. */
   implicit lazy val doubleHasEq = new Eq[Double] {
     override def eq(a: Double, b: Double) = a == b
   }
+}
+
+object ExtraImplicits {
+  implicit def infixOps[T:Eq](lhs:T) = new EqOps(lhs)
+}
+
+class EqOps[T](lhs:T)(implicit e:Eq[T]) {
+  def equal(rhs:T) = e.eq(lhs, rhs)
+  def notEqual(rhs:T) = e.neq(lhs, rhs)
 }
