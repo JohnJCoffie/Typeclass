@@ -1,0 +1,18 @@
+Topics to be covered
+
+1.) How to define a Typeclass
+2.) How Typeclass pattern leaves code open for extension
+3.) How to use implicit scope to change behavior
+
+
+
+Typeclass pattern steps [Src: https://github.com/JohnJCoffie/Typeclass.git]
+
+1.) Create Typeclass 
+2.) Create Adapter method and Typeclass instance
+3.) Use implicit parameter to lookup correct Typeclass instance
+4.) Provide syntactic sugar to make Typeclass feel like an extension of Adaptee
+
+
+
+
