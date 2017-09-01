@@ -7,9 +7,13 @@ trait Eq[A] {
 
 object Eq {
   /* Adapter methods */
+
+  def apply[A](implicit eq: Eq[A]): Eq[A] = eq
+
   def eq[A](lhs:A, rhs:A)(implicit adapter: Eq[A]) = adapter.eq(lhs, rhs)
 
-  def neq[A: Eq](lhs:A, rhs:A) = implicitly[Eq[A]].neq(lhs, rhs)
+//  def neq[A: Eq](lhs:A, rhs:A) = implicitly[Eq[A]].neq(lhs, rhs)
+  def neq[A: Eq](lhs:A, rhs:A) = Eq[A].neq(lhs, rhs)
 
   /* Default Typeclass instances, used when Typeclass author wants to provide default behavior. */
   implicit lazy val doubleHasEq = new Eq[Double] {
