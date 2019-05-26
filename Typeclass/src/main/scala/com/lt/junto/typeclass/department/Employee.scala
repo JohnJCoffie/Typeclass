@@ -1,8 +1,8 @@
 package com.lt.junto.typeclass.department
 
-import org.joda.time.DateTime
+//import org.joda.time.DateTime
 
-case class Employee(name: String, department: String, id: Long, hiredDate: DateTime)
+case class Employee(name: String, department: String, id: Long/*, hiredDate: DateTime*/)
 
 object Employee {
   /* Default Typeclass instances, used when Typeclass author wants to provide default behavior. */
